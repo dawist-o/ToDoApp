@@ -21,9 +21,10 @@ class CustomerController(private val customerService: CustomerService) {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    fun getHello(){
+    fun getHello():String{
         logger.info("qwe")
-        customerService.getHelloWorld()
+        return  customerService.getNotification()
+
     }
 
     @PutMapping
