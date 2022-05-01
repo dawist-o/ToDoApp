@@ -1,0 +1,3 @@
+jwt.salt: "salt"
+jwt.claim: "roles"
+jwt.prefix: "Bearer: "
