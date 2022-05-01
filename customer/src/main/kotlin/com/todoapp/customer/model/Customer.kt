@@ -4,18 +4,17 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "сustomer")
-open class Customer {
+open class Customer(open var email: String,open var  pass: String, open var enabled: Boolean = false) {
 
     @get:Id
-    @get:SequenceGenerator(name = "customer_id_sequence", sequenceName = "customer_id_sequence")
-    @get:GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
+    @get:GeneratedValue(strategy = GenerationType.AUTO)
     @get:Column(name = "customer_id")
     open var id:Long? = null
 
-    open var login:String? = null
-
-    open var password:String? = null
-
-    @get:OneToMany(cascade = [(CascadeType.ALL)], mappedBy = "customer")
+    @get:OneToMany(cascade = [(CascadeType.ALL)], fetch = FetchType.LAZY, mappedBy = "customer")
     open var tasks:MutableList<Task>? = mutableListOf()
+
+    @get:ManyToMany(fetch = FetchType.EAGER)
+    open var roles:MutableList<Role>? = mutableListOf()
+
 }
